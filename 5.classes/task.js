@@ -23,11 +23,7 @@ class PrintEditionItem {
     }
 
     get state() {
-        if (this._state > 100) {
-            return this._state - (this._state - 100)
-        } else {
-            return this._state;
-        }
+        return this._state;
     }
 }
 
@@ -47,22 +43,22 @@ class Book extends PrintEditionItem {
 }
 
 class NovelBook extends Book {
-    constructor(name, releaseDate, pagesCount, author) {
-        super(name, releaseDate, pagesCount, author);
+    constructor(author, name, releaseDate, pagesCount) {
+        super(author, name, releaseDate, pagesCount);
         this.type = "novel";
     }
 }
 
 class FantasticBook extends Book {
-    constructor(name, releaseDate, pagesCount, author) {
-        super(name, releaseDate, pagesCount, author);
+    constructor(author, name, releaseDate, pagesCount) {
+        super(author, name, releaseDate, pagesCount);
         this.type = "fantastic";
     }
 }
 
 class DetectiveBook extends Book {
-    constructor(name, releaseDate, pagesCount, author) {
-        super(name, releaseDate, pagesCount, author);
+    constructor(author, name, releaseDate, pagesCount) {
+        super(author, name, releaseDate, pagesCount);
         this.type = "detective";
     }
 }
@@ -82,18 +78,20 @@ class Library {
     }
 
     findBookBy(type, value) {
-        for (let x = 0; x < this.books.length; x++) {
-            if (this.books[x][type] === value) {
-                consol.log(this.books[x]);
-                return this.books.find(book => book[type] === value);
-            } else {
-                return null
-            }
+        if ((this.books.find(book => book[type] === value)) != undefined) {
+            return this.books.find(book => book[type] === value);
+        } else {
+            return null
         }
-
     }
 
     giveBookByName(bookName) {
-        return this.books.find(book => book.name === bookName);
+        if (this.books.find(book => book.name === bookName) != undefined) {
+            let x = this.books.find(book => book.name === bookName);
+            this.books = this.books.filter(book => book.name != bookName);
+            return x;
+        } else {
+            return null
+        }
     }
 }
