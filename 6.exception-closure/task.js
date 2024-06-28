@@ -25,21 +25,13 @@ class Triangle {
     }
 
     get perimeter() {
-        try {
-            return this.a + this.b + this.c;
-        } catch (error) {
-            return `Ошибка! Треугольник не существует`;
-        }
+        return this.a + this.b + this.c;
     }
 
     get area() {
-        try {
-            let p = this.perimeter / 2;
-            let x = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)).toFixed(3);
-            return Number(x);
-        } catch (error) {
-            return `Ошибка! Треугольник не существует`;
-        }
+        let p = this.perimeter / 2;
+        let x = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)).toFixed(3);
+        return Number(x);
     }
 }
 
