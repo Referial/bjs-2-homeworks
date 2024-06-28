@@ -29,7 +29,7 @@ class Triangle {
     }
 
     get area() {
-        let p = (this.a + this.b + this.c) / 2;
+        let p = (this.perimeter / 2);
         let x = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)).toFixed(3);
         return Number(x);
     }
@@ -39,21 +39,17 @@ function getTriangle(a, b, c) {
     
     try {
         return new Triangle(a, b, c);
-
-        
     } catch (error) {
-        console.log(error);
-        console.log(notTriangle.perimeter());
-        console.log(notTriangle.area());
+        return alert(notTriangle.area);
     }
 }
 
 let notTriangle = {
     get perimeter() {
-        return 'Ошибка! Треугольник не существует';
+        return "Ошибка! Треугольник не существует";
     },
 
     get area() {
-        return 'Ошибка! Треугольник не существует';
+        return "Ошибка! Треугольник не существует";
     }
 };
