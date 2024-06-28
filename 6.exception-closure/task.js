@@ -25,31 +25,36 @@ class Triangle {
     }
 
     get perimeter() {
-        return this.a + this.b + this.c;
+        try {
+            return this.a + this.b + this.c;
+        } catch (error) {
+            return `Ошибка! Треугольник не существует`;
+        }
     }
 
     get area() {
-        let p = (this.perimeter / 2);
-        let x = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)).toFixed(3);
-        return Number(x);
+        try {
+            let p = this.perimeter / 2;
+            let x = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)).toFixed(3);
+            return Number(x);
+        } catch (error) {
+            return `Ошибка! Треугольник не существует`;
+        }
     }
 }
 
 function getTriangle(a, b, c) {
-    
+
     try {
         return new Triangle(a, b, c);
     } catch (error) {
-        return alert(notTriangle.area);
+        return {
+            get perimeter() {
+                return `Ошибка! Треугольник не существует`;
+            },
+            get area() {
+                return `Ошибка! Треугольник не существует`;
+            }
+        }
     }
 }
-
-let notTriangle = {
-    get perimeter() {
-        return "Ошибка! Треугольник не существует";
-    },
-
-    get area() {
-        return "Ошибка! Треугольник не существует";
-    }
-};
